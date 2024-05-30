@@ -1,6 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { useState, ReactNode } from 'react';
+import NaveBer from '../components/NaveBer';
+
+
 
 const HomeLayout:React.FC<{ children: ReactNode }>= ({children}) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
     {/* <!-- ===== Page Wrapper Start ===== --> */}
@@ -12,7 +16,7 @@ const HomeLayout:React.FC<{ children: ReactNode }>= ({children}) => {
       {/* <!-- ===== Content Area Start ===== --> */}
       <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
         {/* <!-- ===== Header Start ===== --> */}
-        {/* <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
+        <NaveBer sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
         {/* <!-- ===== Header End ===== --> */}
 
         {/* <!-- ===== Main Content Start ===== --> */}
@@ -27,6 +31,7 @@ const HomeLayout:React.FC<{ children: ReactNode }>= ({children}) => {
     </div>
     {/* <!-- ===== Page Wrapper End ===== --> */}
   </div>
+  
   )
 }
 

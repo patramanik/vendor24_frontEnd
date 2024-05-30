@@ -5,9 +5,6 @@ import Loader from './common/Loader';
 import PageTitle from './components/PageTitle';
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
-
-import Chart from './pages/Chart';
-import ECommerce from './pages/Dashboard/ECommerce';
 import FormElements from './pages/Form/FormElements';
 import FormLayout from './pages/Form/FormLayout';
 import Profile from './pages/Profile';
@@ -16,6 +13,7 @@ import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import Home from './pages/Home/Home';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,7 +34,7 @@ function App() {
       <Routes>
 
         <Route 
-        path="/home"
+        index
         element={
           <>
           <PageTitle title='Home' />
@@ -46,11 +44,11 @@ function App() {
         />
 
         <Route
-          index
+          path="/dashboard"
           element={
             <>
-              <PageTitle title="eCommerce Dashboard" />
-              <ECommerce />
+              <PageTitle title="Dashboard" />
+              <Dashboard />
             </>
           }
         />
@@ -99,15 +97,7 @@ function App() {
             </>
           }
         />
-        <Route
-          path="/chart"
-          element={
-            <>
-              <PageTitle title="Basic Chart" />
-              <Chart />
-            </>
-          }
-        />
+       
         <Route
           path="/ui/alerts"
           element={
