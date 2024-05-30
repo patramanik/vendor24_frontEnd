@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import DarkModeSwitcher from '../Header/DarkModeSwitcher';
 import DropdownUser from '../Header/DropdownUser';
 import LogoIcon from '../../images/logo/logo-icon.svg';
