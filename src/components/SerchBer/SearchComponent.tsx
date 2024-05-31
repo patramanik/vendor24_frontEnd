@@ -6,7 +6,7 @@ const SearchComponent: React.FC = () => {
   const [location, setLocation] = useState<string>('');
 
   return (
-    <div className="flex flex-col rounded-2xl items-center p-4 bg-gray-100 bg-white dark:bg-black">
+    <div className="flex flex-col rounded-2xl items-center mb-5 p-4 bg-gray-100 bg-white dark:bg-black">
       <div className="w-full  max-w-md">
       <div className="flex mb-4">
           <input

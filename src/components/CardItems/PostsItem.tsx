@@ -21,7 +21,7 @@ const PostsItem: React.FC<PostsItem> = ({
   
 }) => {
   return (
- <div className="max-w-sm w-full mx-auto bg-white shadow-2xl rounded-lg overflow-hidden flex flex-col items-center dark:bg-black dark:text-white" >
+ <div className="max-w-sm  w-full mx-auto bg-white shadow-2xl rounded-lg overflow-hidden flex flex-col items-center dark:bg-black dark:text-white" >
     <img src={image} alt="Card Image" className="w-full h-48 object-cover" loading="lazy" />
     <div className="p-4 w-full">
         <div className=" flex flex-col items-center mb-4">

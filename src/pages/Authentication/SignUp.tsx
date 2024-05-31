@@ -6,13 +6,13 @@ import Logo from '../../images/logo/logo.svg';
 
 const SignUp: React.FC = () => {
   return (
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div className="rounded-sm  border m-10 border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="flex flex-wrap items-center">
         <div className="hidden w-full xl:block xl:w-1/2">
           <div className="py-17.5 px-26 text-center">
             <Link className="mb-5.5 inline-block" to="/">
-              <img className="hidden dark:block" src={Logo} alt="Logo" />
-              <img className="dark:hidden" src={LogoDark} alt="Logo" />
+              <img className="hidden dark:block w-10" src={Logo} alt="Logo" />
+              <img className="dark:hidden w-50" src={LogoDark} alt="Logo" />
             </Link>
             <p className="2xl:px-20">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit
@@ -296,7 +296,7 @@ const SignUp: React.FC = () => {
                 />
               </div>
 
-              <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
+              {/* <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
                 <span>
                   <svg
                     width="20"
@@ -331,7 +331,7 @@ const SignUp: React.FC = () => {
                   </svg>
                 </span>
                 Sign up with Google
-              </button>
+              </button> */}
 
               <div className="mt-6 text-center">
                 <p>

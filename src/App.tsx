@@ -42,6 +42,14 @@ function App() {
           </>
         }
         />
+        <Route 
+        path='/about'
+        element={
+          <>
+          <PageTitle title='Home' />
+          </>
+        }
+        />
 
         <Route
           path="/dashboard"
