@@ -14,6 +14,7 @@ import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import Home from './pages/Home/Home';
 import Dashboard from './pages/Dashboard/Dashboard';
+import About from './pages/Home/About';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -32,7 +33,6 @@ function App() {
   ) : (
     <>
       <Routes>
-
         <Route 
         index
         element={
@@ -46,7 +46,8 @@ function App() {
         path='/about'
         element={
           <>
-          <PageTitle title='Home' />
+          <PageTitle title='about' />
+          <About/>
           </>
         }
         />
