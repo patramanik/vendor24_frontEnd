@@ -3,28 +3,62 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LogoDark from '../../images/logo/logo-dark.svg';
 import Logo from '../../images/logo/logo.svg';
+import {useNavigate} from 'react-router-dom';
+// import toast from 'react-hot-toast';
+import {toast} from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const SignUp: React.FC = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    
+    const navigate = useNavigate();
+    // State to store the form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('https://vendor24-backend.onrender.com/api/v1/auth/signin', { name, email, password });
-            console.log('User signed up:', response.data);
-            setName('');
-            setEmail('');
-            setPassword('');
-            setError('');
-        } catch (error) {
-            console.error('Error signing up', error);
-            setError('Failed to sign up. Please try again later.');
+  // Function to handle form input changes
+  const handleChange = (e:any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // console.log(formData);
+  };
+
+  // Function to submit the form data using Axios
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+    console.log(formData);
+    
+    try {
+      const response = await axios.post("https://vendor24-backend.onrender.com/api/v1/auth/signup", formData);
+      console.log("Post created:", response.data);
+      if(response.data.code == 201 && response.data.status == true){
+          navigate('/auth/signin');
+          Swal.fire({
+              icon: 'success',
+              text: response.data?.message,
+          })
+      }
+    } catch (error:any) {
+        console.error("Error creating post:", error.response.data?.message);
+        if(error.response.data?.code == 400 && error.response.data?.status == false){
+            // alert(error.response.data?.message);
+
+            // for toast but not working
+            // toast.warning(error.response.data?.message, {
+            //     position: toast.POSITION.TOP_LEFT,
+            // });
+
+            Swal.fire({
+                icon: 'warning',
+                title: error.response.data?.message,
+                text: error.response.data?.message,
+            })
+
         }
-    };
+
+    }
+  };
+
 
     return (
         <div className="rounded-sm  border m-10 border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -180,7 +214,9 @@ const SignUp: React.FC = () => {
                 <div className="relative">
                   <input
                     type="text"
-                    value={name} onChange={(e) => setName(e.target.value)}
+                    name='name'
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder="Enter your full name"
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
@@ -216,7 +252,8 @@ const SignUp: React.FC = () => {
                 <div className="relative">
                   <input
                     type="email"
-                    value={email} onChange={(e) => setEmail(e.target.value)}
+                    name='email'
+                    value={formData.email} onChange={handleChange}
                     placeholder="Enter your email"
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
@@ -247,7 +284,8 @@ const SignUp: React.FC = () => {
                 </label>
                 <div className="relative">
                   <input
-                   value={password} onChange={(e) => setPassword(e.target.value)}
+                    name='password'
+                    value={formData.password} onChange={handleChange}
                     type="password"
                     placeholder="Enter your password"
                     className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -376,3 +414,47 @@ const SignUp: React.FC = () => {
 export default SignUp;
 
 
+// import React, { useState } from "react";
+// import axios from "axios";
+
+// const AddPost = () => {
+//   // State to store the form data
+//   const [formData, setFormData] = useState({
+//     title: "",
+//     body: "",
+//   });
+
+//   // Function to handle form input changes
+//   const handleChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
+
+//   // Function to submit the form data using Axios
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const response = await axios.post("https://jsonplaceholder.typicode.com/posts", formData);
+//       console.log("Post created:", response.data);
+//     } catch (error) {
+//       console.error("Error creating post:", error);
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <label>
+//         Title:
+//         <input type="text" name="title" value={formData.title} onChange={handleChange} />
+//       </label>
+//       <br />
+//       <label>
+//         Body:
+//         <textarea name="body" value={formData.body} onChange={handleChange}></textarea>
+//       </label>
+//       <br />
+//       <button type="submit">Add Post</button>
+//     </form>
+//   );
+// };
+
+// export default AddPost;
