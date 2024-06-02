@@ -4,7 +4,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Loader from './common/Loader';
 import PageTitle from './components/PageTitle';
 import SignIn from './pages/Authentication/SignIn';
-import SignUp from './pages/Authentication/SignUp';
 import FormElements from './pages/Form/FormElements';
 import FormLayout from './pages/Form/FormLayout';
 import Profile from './pages/Profile';
@@ -15,6 +14,9 @@ import Buttons from './pages/UiElements/Buttons';
 import Home from './pages/Home/Home';
 import Dashboard from './pages/Dashboard/Dashboard';
 import About from './pages/Home/About';
+import SignupContainer from './Controller/SignupContainer';
+import SignUp from './pages/Authentication/SignUp';
+
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -139,7 +141,8 @@ function App() {
           element={
             <>
               <PageTitle title="Signup" />
-              <SignUp />
+              {/* <SignupContainer/> */}
+              <SignUp/>
             </>
           }
         />

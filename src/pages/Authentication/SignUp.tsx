@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LogoDark from '../../images/logo/logo-dark.svg';
 import Logo from '../../images/logo/logo.svg';
 
-
 const SignUp: React.FC = () => {
-  return (
-    <div className="rounded-sm  border m-10 border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8001/api/v1/auth/signup', { name, email, password });
+            console.log('User signed up:', response.data);
+            setName('');
+            setEmail('');
+            setPassword('');
+            setError('');
+        } catch (error) {
+            console.error('Error signing up', error);
+            setError('Failed to sign up. Please try again later.');
+        }
+    };
+
+    return (
+        <div className="rounded-sm  border m-10 border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="flex flex-wrap items-center">
         <div className="hidden w-full xl:block xl:w-1/2">
           <div className="py-17.5 px-26 text-center">
@@ -346,7 +367,9 @@ const SignUp: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+    );
 };
 
 export default SignUp;
+
+
