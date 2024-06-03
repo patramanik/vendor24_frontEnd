@@ -14,7 +14,6 @@ import Buttons from './pages/UiElements/Buttons';
 import Home from './pages/Home/Home';
 import Dashboard from './pages/Dashboard/Dashboard';
 import About from './pages/Home/About';
-import SignupContainer from './Controller/SignupContainer';
 import SignUp from './pages/Authentication/SignUp';
 
 

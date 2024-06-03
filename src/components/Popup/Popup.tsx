@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoMdClose } from "react-icons/io";
 
 interface PopupProps {
   isOpen: boolean;
@@ -16,7 +17,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, title, children }) => {
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-xl">{title}</h2>
           <button onClick={onClose} className="text-gray-600 hover:text-gray-800">
-            &times;
+          <IoMdClose />
           </button>
         </div>
         <div className="p-4">

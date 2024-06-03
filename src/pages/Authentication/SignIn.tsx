@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogoDark from '../../images/logo/logo-dark.svg';
-import Logo from '../../images/logo/logo.svg';
+import Logo from '../../images/logo/logo-icon-big.svg';
+import HomeLayout from '../../layout/HomeLayout';
 
 
 const SignIn: React.FC = () => {
@@ -26,12 +27,13 @@ const SignIn: React.FC = () => {
 //  }
 
   return (
-    <div className="m-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+    <HomeLayout>
+      <div className="m-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="flex flex-wrap items-center">
         <div className="hidden w-full xl:block xl:w-1/2">
           <div className="py-17.5 px-26 text-center">
             <Link className="mb-5.5 inline-block" to="/">
-              <img className="hidden dark:block" src={Logo} alt="Logo" />
+              <img className="hidden dark:block w-50" src={Logo} alt="Logo" />
               <img className="dark:hidden w-50" src={LogoDark} alt="Logo" />
             </Link>
 
@@ -262,6 +264,8 @@ const SignIn: React.FC = () => {
         </div>
       </div>
     </div>
+    </HomeLayout>
+    
   );
 };
 
