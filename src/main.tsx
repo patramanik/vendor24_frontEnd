@@ -8,12 +8,19 @@ import 'jsvectormap/dist/css/jsvectormap.css';
 import 'flatpickr/dist/flatpickr.min.css';
 import'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Router>
       <ToastContainer/>
-      <App />
+     <Provider store={store}>
+     <App />
+     </Provider>
     </Router>
   </React.StrictMode>,
 );
+
+
+export const base_url = 'http://localhost:8080'

@@ -16,7 +16,6 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import About from './pages/Home/About';
 import SignUp from './pages/Authentication/SignUp';
 
-
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -34,23 +33,23 @@ function App() {
   ) : (
     <>
       <Routes>
-        <Route 
-        index
-        element={
-          <>
-          <PageTitle title='Home' />
-          <Home/>
-          </>
-        }
+        <Route
+          index
+          element={
+            <>
+              <PageTitle title="Home" />
+              <Home />
+            </>
+          }
         />
-        <Route 
-        path='/about'
-        element={
-          <>
-          <PageTitle title='about' />
-          <About/>
-          </>
-        }
+        <Route
+          path="/about"
+          element={
+            <>
+              <PageTitle title="about" />
+              <About />
+            </>
+          }
         />
 
         <Route
@@ -107,7 +106,7 @@ function App() {
             </>
           }
         />
-       
+
         <Route
           path="/ui/alerts"
           element={
@@ -141,7 +140,7 @@ function App() {
             <>
               <PageTitle title="Signup" />
               {/* <SignupContainer/> */}
-              <SignUp/>
+              <SignUp />
             </>
           }
         />
