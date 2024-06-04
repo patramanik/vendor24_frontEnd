@@ -8,14 +8,16 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 // import Swal from 'sweetalert2';
 import HomeLayout from '../../layout/HomeLayout';
+import { useAppDispatch } from '../../redux/hooks';
+import { signupUser } from '../../redux/slices/userSlice';
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
   // State to store the form data
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
   // Function to handle form input changes
@@ -24,14 +26,20 @@ const SignUp: React.FC = () => {
     // console.log(formData);
   };
 
+  const dispatch = useAppDispatch();
+
   // Function to submit the form data using Axios
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(formData);
 
+    dispatch(signupUser(formData));
     try {
-      const response = await axios.post("https://vendor24-backend.onrender.com/api/v1/auth/signup", formData);
-      console.log("Post created:", response.data);
+      const response = await axios.post(
+        'https://vendor24-backend.onrender.com/api/v1/auth/signup',
+        formData,
+      );
+      console.log('Post created:', response.data);
       if (response.data.code == 201 && response.data.status == true) {
         navigate('/auth/signin');
         // Swal.fire({
@@ -43,8 +51,11 @@ const SignUp: React.FC = () => {
         });
       }
     } catch (error: any) {
-      console.error("Error creating post:", error.response.data?.message);
-      if (error.response.data?.code == 400 && error.response.data?.status == false) {
+      console.error('Error creating post:', error.response.data?.message);
+      if (
+        error.response.data?.code == 400 &&
+        error.response.data?.status == false
+      ) {
         // alert(error.response.data?.message);
 
         // for toast but not working
@@ -57,12 +68,9 @@ const SignUp: React.FC = () => {
         //     title: error.response.data?.message,
         //     text: error.response.data?.message,
         // })
-
       }
-
     }
   };
-
 
   return (
     <HomeLayout>
@@ -211,7 +219,7 @@ const SignUp: React.FC = () => {
                 Sign Up
               </h2>
 
-              <form onSubmit={handleSubmit} >
+              <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Name
@@ -219,7 +227,7 @@ const SignUp: React.FC = () => {
                   <div className="relative">
                     <input
                       type="text"
-                      name='name'
+                      name="name"
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Enter your full name"
@@ -257,8 +265,9 @@ const SignUp: React.FC = () => {
                   <div className="relative">
                     <input
                       type="email"
-                      name='email'
-                      value={formData.email} onChange={handleChange}
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder="Enter your email"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
@@ -289,8 +298,9 @@ const SignUp: React.FC = () => {
                   </label>
                   <div className="relative">
                     <input
-                      name='password'
-                      value={formData.password} onChange={handleChange}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
                       type="password"
                       placeholder="Enter your password"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -414,12 +424,10 @@ const SignUp: React.FC = () => {
         </div>
       </div>
     </HomeLayout>
-
   );
 };
 
 export default SignUp;
-
 
 // import React, { useState } from "react";
 // import axios from "axios";

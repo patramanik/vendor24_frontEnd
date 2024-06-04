@@ -23,4 +23,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 );
 
 
-export const base_url = 'http://localhost:8080'
+export const base_url = 'http://localhost:8001'
